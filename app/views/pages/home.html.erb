@@ -1,2 +1,14 @@
-<h1>WELCOME TO MY YOUTUBE APPLICATION</h1>
-<p>Sign In Over Here</p>
+<h1>Welcome to YouTubeRuby 🎥</h1>
+
+<% if user_signed_in? %>
+  <p>Welcome, you are logged in as <%= current_user.email %>👋!!!</p>
+
+  <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %> |
+  <%= link_to "Delete My Account", user_registration_path, 
+      data: { turbo_method: :delete, confirm: "Are you sure you want to delete your account permanently?" } %>
+<% else %>
+  <p>You are not logged in.</p>
+  <%= link_to "Sign up", new_user_registration_path %> |
+  <%= link_to "Login", new_user_session_path %>
+<% end %>
+
